@@ -22,6 +22,16 @@
                 <v-text-field
                   dense
                   color="indigo"
+                  label="Customer Group"
+                  background-color="white"
+                  hide-details
+                  v-model="customer_group"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field
+                  dense
+                  color="indigo"
                   label="Tax ID"
                   background-color="white"
                   hide-details
@@ -48,6 +58,16 @@
                   v-model="email_id"
                 ></v-text-field>
               </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  dense
+                  color="indigo"
+                  label="Customer Details"
+                  background-color="white"
+                  hide-details
+                  v-model="customer_details"
+                ></v-text-field>
+              </v-col>
             </v-row>
           </v-container>
         </v-card-text>
@@ -67,9 +87,11 @@ export default {
   data: () => ({
     customerDialog: false,
     customer_name: '',
+    customer_group: '',
     tax_id: '',
     mobile_no: '',
     email_id: '',
+    customer_details: '',
   }),
   watch: {},
   methods: {
@@ -82,9 +104,11 @@ export default {
         const vm = this;
         const args = {
           customer_name: this.customer_name,
+          customer_group: this.customer_group,
           tax_id: this.tax_id,
           mobile_no: this.mobile_no,
           email_id: this.email_id,
+          customer_details: this.customer_details,
         };
         frappe.call({
           method: 'posawesome.posawesome.api.posapp.create_customer',
@@ -100,9 +124,11 @@ export default {
               evntBus.$emit('add_customer_to_list', args);
               evntBus.$emit('set_customer', r.message.name);
               this.customer_name = '';
+              this.customer_group = '';
               this.tax_id = '';
               this.mobile_no = '';
               this.email_id = '';
+              this.customer_details = '';
             }
           },
         });
