@@ -7,7 +7,7 @@ def get_data():
 		{
 			"module_name": "POS Awesome",
 			"color": "grey",
-			"icon": "octicon octicon-file-directory",
+			"icon": "octicon octicon-credit-card",
 			"type": "module",
 			"label": _("POS Awesome")
 		}
