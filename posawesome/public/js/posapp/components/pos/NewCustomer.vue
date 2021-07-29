@@ -32,10 +32,10 @@
                 <v-text-field
                   dense
                   color="indigo"
-                  label="Tax ID"
+                  label="Customer Details"
                   background-color="white"
                   hide-details
-                  v-model="tax_id"
+                  v-model="customer_details"
                 ></v-text-field>
               </v-col>
               <v-col cols="6">
@@ -58,14 +58,24 @@
                   v-model="email_id"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="6">
                 <v-text-field
                   dense
                   color="indigo"
-                  label="Customer Details"
+                  label="Payment Term"
                   background-color="white"
                   hide-details
-                  v-model="customer_details"
+                  v-model="payment_terms"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field
+                  dense
+                  color="indigo"
+                  label="Tax ID"
+                  background-color="white"
+                  hide-details
+                  v-model="tax_id"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -88,10 +98,11 @@ export default {
     customerDialog: false,
     customer_name: '',
     customer_group: '',
-    tax_id: '',
+    customer_details: '',
     mobile_no: '',
     email_id: '',
-    customer_details: '',
+    payment_terms: '',
+    tax_id: '',
   }),
   watch: {},
   methods: {
@@ -105,10 +116,11 @@ export default {
         const args = {
           customer_name: this.customer_name,
           customer_group: this.customer_group,
-          tax_id: this.tax_id,
+          customer_details: this.customer_details,
           mobile_no: this.mobile_no,
           email_id: this.email_id,
-          customer_details: this.customer_details,
+          payment_terms: this.payment_terms,
+          tax_id: this.tax_id,
         };
         frappe.call({
           method: 'posawesome.posawesome.api.posapp.create_customer',
@@ -125,10 +137,11 @@ export default {
               evntBus.$emit('set_customer', r.message.name);
               this.customer_name = '';
               this.customer_group = '';
-              this.tax_id = '';
+              this.customer_details = '';
               this.mobile_no = '';
               this.email_id = '';
-              this.customer_details = '';
+              this.payment_terms = '';
+              this.tax_id = '';
             }
           },
         });
