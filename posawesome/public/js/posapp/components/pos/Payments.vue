@@ -212,7 +212,7 @@
               dense
               outlined
               color="indigo"
-              label="Totoal Amount"
+              label="Total Amount"
               background-color="white"
               hide-details
               :value="formtCurrency(invoice_doc.total)"
@@ -238,7 +238,7 @@
               dense
               outlined
               color="indigo"
-              label="Grand Amount"
+              label="Grand Total"
               background-color="white"
               hide-details
               :value="formtCurrency(invoice_doc.grand_total)"
@@ -714,7 +714,7 @@ export default {
         function () {
           printWindow.print();
           // printWindow.close();
-          // NOTE : uncomoent this to auto closing printing window
+          // NOTE : uncomment this to auto closing printing window
         },
         true
       );
