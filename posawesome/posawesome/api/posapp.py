@@ -714,17 +714,18 @@ def get_stock_availability(item_code, warehouse):
     return sle_qty
 
 
-def create_customer(customer_name, customer_group, tax_id, mobile_no, email_id, customer_details):
+def create_customer(customer_name, customer_group, customer_details, mobile_no, email_id, payment_terms, tax_id):
     if not frappe.db.exists("Customer", {"customer_name": customer_name}):
         customer = frappe.get_doc(
             {
                 "doctype": "Customer",
                 "customer_name": customer_name,
                 "customer_group": customer_group,
-                "tax_id": tax_id,
+                "customer_details": customer_details,
                 "mobile_no": mobile_no,
                 "email_id": email_id,
-                "customer_details": customer_details,
+                "payment_terms": payment_terms,
+                "tax_id": tax_id,
             }
         ).insert(ignore_permissions=True)
         return customer
